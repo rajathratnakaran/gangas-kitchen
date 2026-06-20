@@ -48,12 +48,45 @@ button{
     <div id="cart">
         No items yet
     </div>
+</div>    
+<div class="card">
+    <h2>Customer Details</h2>
 
-    <h3 id="total">₹0</h3>
+    <input id="name" placeholder="Name" style="width:100%;padding:10px;margin:5px 0;">
+    <input id="phone" placeholder="Phone" style="width:100%;padding:10px;margin:5px 0;">
+    <input id="apartment" placeholder="Apartment" style="width:100%;padding:10px;margin:5px 0;">
+    <input id="flat" placeholder="Flat Number" style="width:100%;padding:10px;margin:5px 0;">
+    <textarea id="notes" placeholder="Notes (optional)" style="width:100%;padding:10px;margin:5px 0;"></textarea>
+
+    <button onclick="submitTestOrder()">
+        Submit Test Order
+    </button>
 </div>
 
-<script>
 
+<script>
+const SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbyrOiVZ69q9a2irSWszN3m03Qn_MCybexK6AkvqF6gntAWEnpsl2XsphttDTWt5P-CHIQ/exec";
+
+async function submitTestOrder() {
+
+    const payload = {
+        name: document.getElementById("name").value,
+        phone: document.getElementById("phone").value,
+        apartment: document.getElementById("apartment").value,
+        flat: document.getElementById("flat").value,
+        order: document.getElementById("cart").innerText,
+        total: document.getElementById("total").innerText,
+        notes: document.getElementById("notes").value
+    };
+
+    await fetch(SCRIPT_URL,{
+        method:"POST",
+        body:JSON.stringify(payload)
+    });
+
+    alert("Order submitted!");
+}
 let comboCount = 0;
 let pooriCount = 0;
 
