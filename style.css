@@ -272,20 +272,6 @@ font-size:18px;
 padding:18px;
 }
 
-/* FLOATING CART */
-
-#floatingCart{
-position:fixed;
-bottom:20px;
-right:20px;
-background:var(–green);
-color:white;
-padding:14px 18px;
-border-radius:999px;
-font-weight:700;
-box-shadow:0 10px 24px rgba(0,0,0,.15);
-}
-
 /* FOOTER */
 
 footer{
