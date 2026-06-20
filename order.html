@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ganga's Kitchen Orders</title>
+</head>
+
+<body>
+
+<h1>🍽️ Ganga's Kitchen</h1>
+
+<h2>Sunday Combo</h2>
+<p>₹169</p>
+<button onclick="addCombo()">Add Sunday Combo</button>
+
+<h2>Your Order</h2>
+
+<div id="cart">
+No items yet
+</div>
+
+<script>
+
+let comboCount = 0;
+
+function addCombo() {
+
+    comboCount++;
+
+    document.getElementById("cart").innerHTML =
+        "Sunday Combo x " + comboCount;
+
+}
+
+</script>
+
+</body>
+</html>
