@@ -1,4 +1,4 @@
-const CONFIG = {
+fconst CONFIG = {
 whatsappNumber: "8589812323",
 
 scriptUrl: "https://script.google.com/macros/s/AKfycbyrOiVZ69q9a2irSWszN3m03Qn_MCybexK6AkvqF6gntAWEnpsl2XsphttDTWt5P-CHIQ/exec",
@@ -146,12 +146,21 @@ html = "No items yet";
 document.getElementById("cart").innerHTML = html;
 document.getElementById("total").innerText = "₹" + total;
 
-const floatingCart =
-document.getElementById("floatingCart");
+const hasItems =
+Object.values(cart).some(qty => qty > 0);
 
-if (floatingCart) {
-floatingCart.innerText = "🛒 ₹" + total;
+const placeOrderBtn =
+document.getElementById("placeOrderBtn");
+
+if(placeOrderBtn){
+    placeOrderBtn.disabled = !hasItems;
+
+    placeOrderBtn.style.background =
+        hasItems
+        ? "#111111"
+        : "#d9d9d9";
 }
+
 }
 
 async function placeOrder() {
