@@ -99,13 +99,20 @@ menuContainer.innerHTML = html;
 
 }
 
-function addCombo(name,button){
+function addCombo(name, button){
 
-cart[name] =
-(cart[name] || 0) + 1;
+if(cart[name]){
+    cart[name] = 0;
 
-button.innerHTML = "✓ Added";
-button.style.background = "#214D36";
+    button.innerHTML = "Add Combo";
+    button.style.background = "";
+}
+else{
+    cart[name] = 1;
+
+    button.innerHTML = "✓ Added";
+    button.style.background = "#214D36";
+}
 
 updateCart();
 
