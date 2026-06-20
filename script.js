@@ -46,7 +46,7 @@ let html = "";
 Object.keys(CONFIG.items).forEach(item => {
 
  
-html += 
+html += `
   <div class="menu-item">
 
     <div class="item-left">
