@@ -1,112 +1,209 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Ganga's Kitchen</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
 <div class="container">
-<section class="hero-card">
-<div class="hero-content">
-    <div class="hero-left">
-        <h1>Ganga's Kitchen</h1>
-        <p class="tagline">
-            Made as if family were coming over.
-        </p>
-        <div class="hero-badges">
-            <span class="badge">
-                🚚 Delivered before 9 AM
-            </span>
-            <span class="badge">
-                ⏰ Order before Saturday 5 PM
-            </span>
-            <span class="badge">
-                ❤️ Homemade with love
-            </span>
+
+```
+<!-- HERO -->
+
+<section class="hero">
+
+    <img
+        src="images/hero.png"
+        alt="Ganga's Kitchen"
+        class="hero-image">
+
+    <h1 class="brand">
+        Ganga's Kitchen
+    </h1>
+
+    <p class="tagline">
+        Made as if family were coming over.
+    </p>
+
+    <div class="badges">
+
+        <span class="badge">
+            🚚 Delivered before 9 AM
+        </span>
+
+        <span class="badge">
+            ⏰ Order before Saturday 5 PM
+        </span>
+
+        <span class="badge">
+            ❤️ Homemade with love
+        </span>
+
+    </div>
+
+</section>
+
+<!-- COMBOS -->
+
+<section class="section">
+
+    <h2>Sunday Specials</h2>
+
+    <div class="combo-grid">
+
+        <div class="combo-card">
+
+            <img
+                src="images/sunday-combo.png"
+                alt="Sunday Combo">
+
+            <h3>Sunday Combo</h3>
+
+            <p>
+                4 Poori + Channa<br>
+                2 Idli + Sambar
+            </p>
+
+            <div class="price">
+                ₹169
+            </div>
+
+            <button
+                id="sundayComboBtn"
+                onclick="addCombo('Sunday Combo', this)">
+                Add Combo
+            </button>
+
         </div>
-    </div>
-    <div class="hero-right">
-        <img
-            src="images/hero.png"
-            alt="Breakfast"
-            class="hero-image">
-    </div>
-</div>
-</section>
-<section class="section">
-<h2>Sunday Specials</h2>
-<div class="combo-grid">
-    <div class="combo-card">
-        <img
-            src="images/sunday-combo.png"
-            alt="Sunday Combo">
-        <h3>Sunday Combo</h3>
-        <p>
-            4 Poori + Channa<br>
-            2 Idli + Sambar
-        </p>
-        <div class="price">
-            ₹169
+
+        <div class="combo-card">
+
+            <img
+                src="images/family-combo.png"
+                alt="Family Combo">
+
+            <h3>Family Combo</h3>
+
+            <p>
+                8 Poori + 2 Channa<br>
+                6 Idli + Large Sambar
+            </p>
+
+            <div class="price">
+                ₹329
+            </div>
+
+            <button
+                id="familyComboBtn"
+                onclick="addCombo('Family Combo', this)">
+                Add Combo
+            </button>
+
         </div>
-        <button onclick="addCombo('Sunday Combo')">
-            Add Combo
-        </button>
+
     </div>
-    <div class="combo-card">
-        <img
-            src="images/family-combo.png"
-            alt="Family Combo">
-        <h3>Family Combo</h3>
-        <p>
-            8 Poori + 2 Channa<br>
-            6 Idli + Large Sambar
-        </p>
-        <div class="price">
-            ₹329
-        </div>
-        <button onclick="addCombo('Family Combo')">
-            Add Combo
-        </button>
+
+</section>
+
+<!-- BUILD BREAKFAST -->
+
+<section class="section">
+
+    <h2>Build Your Breakfast</h2>
+
+    <div id="menuContainer">
+
     </div>
-</div>
+
 </section>
+
+<!-- ORDER SUMMARY -->
+
 <section class="section">
-<h2>Build Your Breakfast</h2>
-<div id="menuContainer">
-</div>
+
+    <h2>Your Order</h2>
+
+    <div id="cart">
+        No items yet
+    </div>
+
+    <div id="total">
+        ₹0
+    </div>
+
 </section>
+
+<!-- CUSTOMER DETAILS -->
+
 <section class="section">
-<h2>Customer Details</h2>
-<input id="name" placeholder="Name">
-<input id="phone" placeholder="Phone">
-<input id="apartment" placeholder="Apartment / Society">
-<input id="flat" placeholder="Flat Number">
-<textarea id="notes" placeholder="Notes (optional)"></textarea>
-</section>
-<section class="section">
-<h2>Your Order</h2>
-<div id="cart">
-    No items yet
-</div>
-<div id="total">
-    ₹0
-</div>
+
+    <h2>Customer Details</h2>
+
+    <input
+        id="name"
+        placeholder="Name">
+
+    <input
+        id="phone"
+        placeholder="Phone">
+
+    <input
+        id="apartment"
+        placeholder="Apartment / Society">
+
+    <input
+        id="flat"
+        placeholder="Flat Number">
+
+    <textarea
+        id="notes"
+        placeholder="Notes (optional)">
+    </textarea>
+
     <button
-    id="placeOrderBtn"
-    class="place-order-btn"
-    onclick="placeOrder()">
-    Place Order
-</button>
+        id="placeOrderBtn"
+        class="place-order-btn"
+        onclick="placeOrder()"
+        disabled>
+
+        Place Order
+
+    </button>
+
+    <div
+        id="successMessage"
+        class="success-message">
+
+    </div>
+
 </section>
+
 <footer>
-Made with ❤️ in every dish
+
+    Questions?
+
+    <br>
+
+    Contact Ganga's Kitchen
+
 </footer>
+```
+
 </div>
+
 <script src="script.js"></script>
+
 </body>
 </html>
