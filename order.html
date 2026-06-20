@@ -1,214 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Ganga's Kitchen Orders</title>
-<style>
-
-*{
-    box-sizing:border-box;
-}
-
-body{
-    margin:0;
-    padding:30px;
-    background:#F8F5EE;
-    color:#243B2E;
-    font-family:Arial,sans-serif;
-}
-
-h1{
-    text-align:center;
-    font-size:48px;
-    margin-bottom:8px;
-}
-
-.subtitle{
-    text-align:center;
-    color:#666;
-    margin-bottom:30px;
-}
-
-.card{
-    background:white;
-    border-radius:20px;
-    padding:24px;
-    margin-bottom:20px;
-    box-shadow:0 4px 18px rgba(0,0,0,.06);
-}
-
-.card h2{
-    margin-top:0;
-}
-
-button{
-    background:#214D36;
-    color:white;
-    border:none;
-    border-radius:12px;
-    padding:12px 18px;
-    cursor:pointer;
-}
-
-input,
-textarea{
-    width:100%;
-    padding:14px;
-    margin:8px 0;
-    border-radius:12px;
-    border:1px solid #DDD;
-}
-
-#total{
-    color:#214D36;
-    font-size:32px;
-}
-
-.badges{
-    display:flex;
-    gap:10px;
-    justify-content:center;
-    flex-wrap:wrap;
-    margin-bottom:25px;
-}
-
-.badge{
-    background:white;
-    padding:10px 14px;
-    border-radius:999px;
-    box-shadow:0 2px 10px rgba(0,0,0,.05);
-    font-size:14px;
-}
-
-</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ganga's Kitchen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-<h1>Ganga's Kitchen</h1>
-
-<p class="subtitle">
-Made as if family were coming over.
-</p>
-
-<div class="badges">
-    <div class="badge">🚚 Delivered before 9 AM</div>
-    <div class="badge">⏰ Orders close Saturday 4 PM</div>
-    <div class="badge">❤️ Home-cooked every Sunday</div>
-</div>
-
-<div class="card">
-    <h2>Sunday Combo</h2>
-    <p>4 Poori + Channa + 2 Idli + Sambar</p>
-    <p><strong>₹169</strong></p>
-    <button onclick="addCombo()">Add Sunday Combo</button>
-</div>
-
-<div class="card">
-    <h2>Build Your Breakfast</h2>
-
-    <p>
-        Poori ₹10
-        <button onclick="changeQty(-1)">-</button>
-        <span id="pooriQty">0</span>
-        <button onclick="changeQty(1)">+</button>
-    </p>
-</div>
-
-    <div class="card">
-    <h2>Your Order</h2>
-
-    <div id="cart">
-        No items yet
+<div class="container">
+<section class="hero-card">
+<div class="hero-content">
+    <div class="hero-left">
+        <h1>Ganga's Kitchen</h1>
+        <p class="tagline">
+            Made as if family were coming over.
+        </p>
+        <div class="hero-badges">
+            <span class="badge">
+                🚚 Delivered before 9 AM
+            </span>
+            <span class="badge">
+                ⏰ Order before Saturday 5 PM
+            </span>
+            <span class="badge">
+                ❤️ Homemade with love
+            </span>
+        </div>
     </div>
-
-    <h3 id="total">₹0</h3>
+    <div class="hero-right">
+        <img
+            src="images/hero.jpg"
+            alt="Breakfast"
+            class="hero-image">
+    </div>
 </div>
-<div class="card">
-    <h2>Customer Details</h2>
-
-    <input id="name" placeholder="Name" style="width:100%;padding:10px;margin:5px 0;">
-    <input id="phone" placeholder="Phone" style="width:100%;padding:10px;margin:5px 0;">
-    <input id="apartment" placeholder="Apartment" style="width:100%;padding:10px;margin:5px 0;">
-    <input id="flat" placeholder="Flat Number" style="width:100%;padding:10px;margin:5px 0;">
-    <textarea id="notes" placeholder="Notes (optional)" style="width:100%;padding:10px;margin:5px 0;"></textarea>
-
-    <button onclick="submitTestOrder()">
-        Submit Test Order
-    </button>
+</section>
+<section class="section">
+<h2>Sunday Specials</h2>
+<div class="combo-grid">
+    <div class="combo-card">
+        <img
+            src="images/sunday-combo.jpg"
+            alt="Sunday Combo">
+        <h3>Sunday Combo</h3>
+        <p>
+            4 Poori + Channa<br>
+            2 Idli + Sambar
+        </p>
+        <div class="price">
+            ₹169
+        </div>
+        <button onclick="addCombo('Sunday Combo')">
+            Add Combo
+        </button>
+    </div>
+    <div class="combo-card">
+        <img
+            src="images/family-combo.jpg"
+            alt="Family Combo">
+        <h3>Family Combo</h3>
+        <p>
+            8 Poori + 2 Channa<br>
+            6 Idli + Large Sambar
+        </p>
+        <div class="price">
+            ₹329
+        </div>
+        <button onclick="addCombo('Family Combo')">
+            Add Combo
+        </button>
+    </div>
 </div>
-
-
-<script>
-const SCRIPT_URL =
-"https://script.google.com/macros/s/AKfycbyrOiVZ69q9a2irSWszN3m03Qn_MCybexK6AkvqF6gntAWEnpsl2XsphttDTWt5P-CHIQ/exec";
-
-async function submitTestOrder() {
-
-    const payload = {
-        name: document.getElementById("name").value,
-        phone: document.getElementById("phone").value,
-        apartment: document.getElementById("apartment").value,
-        flat: document.getElementById("flat").value,
-        order: document.getElementById("cart").innerText,
-        total: document.getElementById("total").innerText,
-        notes: document.getElementById("notes").value
-    };
-
-    await fetch(SCRIPT_URL,{
-        method:"POST",
-        body:JSON.stringify(payload)
-    });
-
-    alert("Order submitted!");
-}
-let comboCount = 0;
-let pooriCount = 0;
-
-function addCombo() {
-    comboCount++;
-    updateCart();
-}
-
-function changeQty(change){
-
-    pooriCount += change;
-
-    if(pooriCount < 0){
-        pooriCount = 0;
-    }
-
-    document.getElementById("pooriQty").innerText =
-        pooriCount;
-
-    updateCart();
-}
-
-function updateCart(){
-
-    let total =
-        comboCount * 169 +
-        pooriCount * 10;
-
-    let html = "";
-
-    if(comboCount > 0){
-        html += "Sunday Combo x " + comboCount + "<br>";
-    }
-
-    if(pooriCount > 0){
-        html += "Poori x " + pooriCount + "<br>";
-    }
-
-    if(html === ""){
-        html = "No items yet";
-    }
-
-    document.getElementById("cart").innerHTML = html;
-    document.getElementById("total").innerText =
-        "₹" + total;
-}
-
-</script>
-
+</section>
+<section class="section">
+<h2>Build Your Breakfast</h2>
+<div id="menuContainer">
+</div>
+</section>
+<section class="section">
+<h2>Customer Details</h2>
+<input id="name" placeholder="Name">
+<input id="phone" placeholder="Phone">
+<input id="apartment" placeholder="Apartment / Society">
+<input id="flat" placeholder="Flat Number">
+<textarea id="notes" placeholder="Notes (optional)"></textarea>
+</section>
+<section class="section">
+<h2>Your Order</h2>
+<div id="cart">
+    No items yet
+</div>
+<div id="total">
+    ₹0
+</div>
+<button
+    id="placeOrderBtn"
+    class="place-order-btn">
+    Place Order
+</button>
+</section>
+<footer>
+Made with ❤️ in every dish
+</footer>
+</div>
+<div id="floatingCart">
+🛒 ₹0
+</div>
+<script src="script.js"></script>
 </body>
 </html>
