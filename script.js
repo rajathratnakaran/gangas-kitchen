@@ -1,4 +1,4 @@
-fconst CONFIG = {
+const CONFIG = {
 whatsappNumber: "8589812323",
 
 scriptUrl: "https://script.google.com/macros/s/AKfycbyrOiVZ69q9a2irSWszN3m03Qn_MCybexK6AkvqF6gntAWEnpsl2XsphttDTWt5P-CHIQ/exec",
