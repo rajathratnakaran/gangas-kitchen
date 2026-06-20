@@ -12,7 +12,7 @@ price: 10,
 image: "images/poori.png"
 },
 
-```
+ 
 Channa: {
   price: 69,
   image: "images/channa.png"
@@ -27,7 +27,7 @@ Sambar: {
   price: 39,
   image: "images/sambar.png"
 }
-```
+ 
 
 }
 };
@@ -45,8 +45,8 @@ let html = "";
 
 Object.keys(CONFIG.items).forEach(item => {
 
-```
-html += `
+ 
+html += 
   <div class="menu-item">
 
     <div class="item-left">
@@ -75,7 +75,7 @@ html += `
 
   </div>
 `;
-```
+ 
 
 });
 
@@ -110,7 +110,7 @@ let html = "";
 
 Object.keys(cart).forEach(item => {
 
-```
+ 
 if (cart[item] <= 0) {
   return;
 }
@@ -135,7 +135,7 @@ if (item === "Sunday Combo") {
     cart[item] *
     CONFIG.items[item].price;
 }
-```
+ 
 
 });
 
