@@ -8,19 +8,19 @@ familyComboPrice: 329,
 items: {
     Poori: {
         price: 10,
-        image: "images/poori.jpg"
+        image: "images/poori.png"
     },
     Channa: {
         price: 69,
-        image: "images/channa.jpg"
+        image: "images/channa.png"
     },
     Idli: {
         price: 10,
-        image: "images/idli.jpg"
+        image: "images/idli.png"
     },
     Sambar: {
         price: 39,
-        image: "images/sambar.jpg"
+        image: "images/sambar.png"
     }
 }
 
