@@ -76,7 +76,7 @@ ${item}
 
 <button
 onclick="changeQty('${item}',-1)">
-----------------------------------
+-
 
 </button>
 
@@ -282,7 +282,6 @@ total
 
 try{
 
-const response =
 await fetch(
 CONFIG.scriptUrl,
 {
@@ -290,9 +289,6 @@ method:"POST",
 body:JSON.stringify(payload)
 }
 );
-
-const result =
-await response.json();
 
 document.getElementById(
 "successMessage"
@@ -303,11 +299,6 @@ document.getElementById(
 ).innerHTML =
 
 `✅ Order Submitted Successfully
-
-<br><br>
-
-Order ID: <strong>
-${result.orderId} </strong>
 
 <br><br>
 
