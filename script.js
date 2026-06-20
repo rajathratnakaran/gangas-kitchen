@@ -1,202 +1,268 @@
 const CONFIG = {
-whatsappNumber: "8589812323",
 
-scriptUrl: "https://script.google.com/macros/s/AKfycbyrOiVZ69q9a2irSWszN3m03Qn_MCybexK6AkvqF6gntAWEnpsl2XsphttDTWt5P-CHIQ/exec",
+scriptUrl:
+"https://script.google.com/macros/s/AKfycbyrOiVZ69q9a2irSWszN3m03Qn_MCybexK6AkvqF6gntAWEnpsl2XsphttDTWt5P-CHIQ/exec",
 
 sundayComboPrice: 169,
 familyComboPrice: 329,
 
 items: {
+
 Poori: {
 price: 10,
 image: "images/poori.png"
 },
 
- 
 Channa: {
-  price: 69,
-  image: "images/channa.png"
+price: 69,
+image: "images/channa.png"
 },
 
 Idli: {
-  price: 10,
-  image: "images/idli.png"
+price: 10,
+image: "images/idli.png"
 },
 
 Sambar: {
-  price: 39,
-  image: "images/sambar.png"
+price: 39,
+image: "images/sambar.png"
 }
- 
 
 }
+
 };
 
 const cart = {};
 
-const menuContainer = document.getElementById("menuContainer");
+const menuContainer =
+document.getElementById("menuContainer");
 
-if (menuContainer) {
+if(menuContainer){
 buildMenu();
+updateCart();
 }
 
-function buildMenu() {
+function buildMenu(){
+
 let html = "";
 
 Object.keys(CONFIG.items).forEach(item => {
 
- 
 html += `
-  <div class="menu-item">
 
-    <div class="item-left">
+<div class="menu-item">
 
-      <img src="${CONFIG.items[item].image}" alt="${item}">
+<div class="item-left">
 
-      <div>
-        <div class="item-name">${item}</div>
+<img
+src="${CONFIG.items[item].image}"
+alt="${item}">
 
-        <div class="item-price">
-          ₹${CONFIG.items[item].price}
-        </div>
-      </div>
+<div>
 
-    </div>
+<div class="item-name">
+${item}
+</div>
 
-    <div class="qty">
+<div class="item-price">
+₹${CONFIG.items[item].price}
+</div>
 
-      <button onclick="changeQty('${item}', -1)">-</button>
+</div>
 
-      <span id="${item}Qty">0</span>
+</div>
 
-      <button onclick="changeQty('${item}', 1)">+</button>
+<div class="qty">
 
-    </div>
+<button
+onclick="changeQty('${item}',-1)">
+----------------------------------
 
-  </div>
+</button>
+
+<span id="${item}Qty">
+0
+</span>
+
+<button
+onclick="changeQty('${item}',1)">
++ </button>
+
+</div>
+
+</div>
 `;
- 
 
 });
 
 menuContainer.innerHTML = html;
+
 }
 
-function addCombo(name) {
-cart[name] = (cart[name] || 0) + 1;
+function addCombo(name,button){
+
+cart[name] =
+(cart[name] || 0) + 1;
+
+button.innerHTML = "✓ Added";
+button.style.background = "#214D36";
+
 updateCart();
+
 }
 
-function changeQty(item, change) {
-cart[item] = (cart[item] || 0) + change;
+function changeQty(item,change){
 
-if (cart[item] < 0) {
+cart[item] =
+(cart[item] || 0) + change;
+
+if(cart[item] < 0){
 cart[item] = 0;
 }
 
 const qtyElement =
-document.getElementById(item + "Qty");
+document.getElementById(
+item + "Qty"
+);
 
-if (qtyElement) {
-qtyElement.innerText = cart[item];
+if(qtyElement){
+qtyElement.innerText =
+cart[item];
 }
 
 updateCart();
+
 }
 
-function updateCart() {
+function updateCart(){
+
 let total = 0;
 let html = "";
 
 Object.keys(cart).forEach(item => {
 
- 
-if (cart[item] <= 0) {
-  return;
+if(cart[item] <= 0){
+return;
 }
 
-html += `${item} x ${cart[item]}<br>`;
+html +=
+`${item} x ${cart[item]}<br>`;
 
-if (item === "Sunday Combo") {
+if(item === "Sunday Combo"){
 
-  total +=
-    cart[item] *
-    CONFIG.sundayComboPrice;
+total +=
+cart[item] *
+CONFIG.sundayComboPrice;
 
-} else if (item === "Family Combo") {
-
-  total +=
-    cart[item] *
-    CONFIG.familyComboPrice;
-
-} else {
-
-  total +=
-    cart[item] *
-    CONFIG.items[item].price;
 }
- 
+
+else if(item === "Family Combo"){
+
+total +=
+cart[item] *
+CONFIG.familyComboPrice;
+
+}
+
+else{
+
+total +=
+cart[item] *
+CONFIG.items[item].price;
+
+}
 
 });
 
-if (html === "") {
+if(html === ""){
 html = "No items yet";
 }
 
-document.getElementById("cart").innerHTML = html;
-document.getElementById("total").innerText = "₹" + total;
+document.getElementById("cart")
+.innerHTML = html;
+
+document.getElementById("total")
+.innerText = "₹" + total;
 
 const hasItems =
-Object.values(cart).some(qty => qty > 0);
+Object.values(cart)
+.some(qty => qty > 0);
 
 const placeOrderBtn =
-document.getElementById("placeOrderBtn");
+document.getElementById(
+"placeOrderBtn"
+);
 
 if(placeOrderBtn){
-    placeOrderBtn.disabled = !hasItems;
 
-    placeOrderBtn.style.background =
-        hasItems
-        ? "#111111"
-        : "#d9d9d9";
-}
+placeOrderBtn.disabled =
+!hasItems;
 
 }
 
-async function placeOrder() {
+}
+
+async function placeOrder(){
 
 const name =
-document.getElementById("name").value.trim();
+document.getElementById("name")
+.value.trim();
 
 const phone =
-document.getElementById("phone").value.trim();
+document.getElementById("phone")
+.value.trim();
 
 const apartment =
-document.getElementById("apartment").value.trim();
+document.getElementById("apartment")
+.value.trim();
 
 const flat =
-document.getElementById("flat").value.trim();
+document.getElementById("flat")
+.value.trim();
 
 const notes =
-document.getElementById("notes").value.trim();
+document.getElementById("notes")
+.value.trim();
 
 const order =
-document.getElementById("cart").innerText;
+document.getElementById("cart")
+.innerText;
 
 const total =
-document.getElementById("total").innerText;
+document.getElementById("total")
+.innerText;
 
-if (order === "No items yet") {
-alert("Please add at least one item.");
+if(order === "No items yet"){
+
+alert(
+"Please add at least one item."
+);
+
 return;
+
 }
 
-if (!name || !phone) {
-alert("Name and Phone are required.");
+if(!name || !phone){
+
+alert(
+"Name and Phone are required."
+);
+
 return;
+
 }
+
+const placeOrderBtn =
+document.getElementById(
+"placeOrderBtn"
+);
+
+placeOrderBtn.disabled = true;
+placeOrderBtn.innerHTML =
+"Submitting...";
 
 const payload = {
+
 name,
 phone,
 apartment,
@@ -204,38 +270,60 @@ flat,
 notes,
 order,
 total
+
 };
 
-try {
-await fetch(CONFIG.scriptUrl, {
-method: "POST",
-body: JSON.stringify(payload)
-});
-} catch (error) {
+try{
+
+const response =
+await fetch(
+CONFIG.scriptUrl,
+{
+method:"POST",
+body:JSON.stringify(payload)
+}
+);
+
+const result =
+await response.json();
+
+document.getElementById(
+"successMessage"
+).style.display = "block";
+
+document.getElementById(
+"successMessage"
+).innerHTML =
+
+`✅ Order Submitted Successfully
+
+<br><br>
+
+Order ID: <strong>
+${result.orderId} </strong>
+
+<br><br>
+
+We'll deliver before 9 AM Sunday.`;
+
+placeOrderBtn.innerHTML =
+"✓ Order Submitted";
+
+}
+catch(error){
+
 console.log(error);
+
+placeOrderBtn.disabled =
+false;
+
+placeOrderBtn.innerHTML =
+"Place Order";
+
+alert(
+"Something went wrong. Please try again."
+);
+
 }
 
-const whatsappMessage = encodeURIComponent(
-`Hi Ganga's Kitchen,
-
-Name: ${name}
-Phone: ${phone}
-
-Apartment: ${apartment}
-Flat: ${flat}
-
-Order:
-${order}
-
-Total:
-${total}
-
-Notes:
-${notes}`
-);
-
-window.open(
-`https://wa.me/91${CONFIG.whatsappNumber}?text=${whatsappMessage}`,
-"_blank"
-);
 }
